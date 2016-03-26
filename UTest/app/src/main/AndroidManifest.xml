@@ -18,6 +18,42 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".QuizSearch"
+            android:label="@string/title_activity_quiz_search"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.team8.utest.MainActivity" />
+        </activity>
+        <activity
+            android:name=".QuizTaker"
+            android:label="@string/title_activity_quiz_taker"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.team8.utest.MainActivity" />
+        </activity>
+        <activity
+            android:name=".QuizCreator"
+            android:label="@string/title_activity_quiz_creator"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.team8.utest.MainActivity" />
+        </activity>
+        <activity
+            android:name=".QuizResults"
+            android:label="@string/title_activity_quiz_results"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.team8.utest.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

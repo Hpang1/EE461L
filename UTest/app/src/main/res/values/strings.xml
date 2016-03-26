@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">UTest</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_quiz_search">QuizSearch</string>
+    <string name="title_activity_quiz_taker">QuizTaker</string>
+    <string name="title_activity_quiz_creator">QuizCreator</string>
+    <string name="title_activity_quiz_results">QuizResults</string>
 </resources>
