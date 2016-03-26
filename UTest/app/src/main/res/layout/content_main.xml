@@ -31,41 +31,60 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Button"
+            android:text="Search Quizzes"
             android:id="@+id/button"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
             android:clickable="true"
             android:background="#fafaf5"
             android:paddingLeft="100dp"
-            android:paddingRight="100dp" />
+            android:paddingRight="100dp"
+            android:onClick="goSearch"
+            android:typeface="normal" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Button"
+            android:text="Create Quiz"
             android:id="@+id/button2"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:background="#fafaf5"
+            android:layout_marginBottom="20dp"
+            android:onClick="goCreate"
+            android:paddingLeft="100dp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Button"
+            android:text="My Quizzes"
             android:id="@+id/button3"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:background="#fafaf5"
+            android:layout_marginBottom="20dp"
+            android:onClick="goPast" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/button4"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Button"
+            android:text="My Results"
             android:id="@+id/button5"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:background="#fafaf5"
+            android:allowUndo="true"
+            android:layout_marginBottom="20dp"
+            android:singleLine="true"
+            android:onClick="goResults" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log Out"
+            android:id="@+id/button4"
+            android:layout_gravity="center_horizontal"
+            android:background="#fafaf5"
+            android:allowUndo="true"
+            android:layout_marginBottom="20dp"
+            android:onClick="logOut" />
+
     </LinearLayout>
 </RelativeLayout>

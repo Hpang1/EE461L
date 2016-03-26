@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
     }
 
@@ -37,9 +37,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void goTake(View view){
-        Intent intent = new Intent(this, QuizTaker.class);
+    public void goPast(View view){
+        Intent intent = new Intent(this, QuizPast.class);
         startActivity(intent);
+    }
+
+    public void logOut(View view){
     }
 
     @Override
