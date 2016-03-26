@@ -6,6 +6,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.GridLayout;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 public class QuizCreator extends AppCompatActivity {
 
@@ -15,16 +20,26 @@ public class QuizCreator extends AppCompatActivity {
         setContentView(R.layout.activity_quiz_creator);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        RelativeLayout outerlayout = (RelativeLayout) View.inflate(this, R.layout.content_quiz_creator, null);
+
+        LinearLayout layout = new LinearLayout(this);
+        EditText question = new EditText(this);
+        question.setText("Sample Question");
+
+        LinearLayout questionLayout = new LinearLayout(this);
+        questionLayout.setOrientation(LinearLayout.HORIZONTAL);
+        EditText answer1 = new EditText(this);
+        answer1.setText("Sample Answer Choice");
+        Button newQuestion = new Button(this);
+        questionLayout.addView(answer1);
+        questionLayout.addView(newQuestion);
+
+        layout.addView(question);
+        layout.addView(questionLayout);
+
+        outerlayout.addView(layout);
     }
 
 }
