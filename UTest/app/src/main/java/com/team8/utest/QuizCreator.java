@@ -17,13 +17,10 @@ public class QuizCreator extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_creator);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         RelativeLayout outerlayout = (RelativeLayout) View.inflate(this, R.layout.content_quiz_creator, null);
@@ -44,6 +41,7 @@ public class QuizCreator extends AppCompatActivity {
         layout.addView(questionLayout);
 
         outerlayout.addView(layout);
+        setContentView(R.layout.activity_quiz_creator);
     }
 
 }

@@ -16,10 +16,6 @@ public class QuizTaker extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
