@@ -12,4 +12,59 @@
     tools:context="com.team8.utest.QuizSearch"
     tools:showIn="@layout/activity_quiz_search">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText"
+            android:layout_gravity="center_horizontal"
+            android:textIsSelectable="false"
+            android:text="search text here" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_gravity="right"
+            android:gravity="center_horizontal">
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="150dp"
+                android:layout_height="25dp"
+                android:text="Search Title"
+                android:id="@+id/searchAuthor"
+                android:layout_marginRight="10dp"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:background="@drawable/mybutton" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="150dp"
+                android:layout_height="25dp"
+                android:text="Search Creator"
+                android:id="@+id/searchCreator"
+                android:layout_marginLeft="10dp"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:background="@drawable/mybutton" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/searchScroll"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
 </RelativeLayout>

@@ -24,19 +24,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/textView"
+            android:text="say something here"
+            android:id="@+id/pastQuizText"
             android:layout_gravity="center_horizontal" />
 
-        <TableLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
+            android:layout_height="match_parent"
+            android:id="@+id/pastScroll"
+            android:layout_gravity="center_horizontal" />
 
-            <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/scrollView" />
-        </TableLayout>
     </LinearLayout>
 </RelativeLayout>

@@ -34,7 +34,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:text="Search Quizzes"
             android:id="@+id/searchQuizzes"
             android:layout_gravity="center_horizontal"
@@ -47,7 +47,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:text="Create Quiz"
             android:id="@+id/createQuizzes"
             android:layout_gravity="center_horizontal"
@@ -61,7 +61,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:text="My Quizzes"
             android:id="@+id/myQuizzes"
             android:layout_gravity="center_horizontal"
@@ -75,7 +75,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:text="My Results"
             android:id="@+id/myResults"
             android:layout_gravity="center_horizontal"
@@ -91,7 +91,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:text="Log Out"
             android:id="@+id/logOut"
             android:layout_gravity="center_horizontal"
