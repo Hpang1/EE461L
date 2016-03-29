@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">UTest</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_quiz_search">QuizSearch</string>
-    <string name="title_activity_quiz_taker">QuizTaker</string>
-    <string name="title_activity_quiz_creator">QuizCreator</string>
-    <string name="title_activity_quiz_results">QuizResults</string>
-    <string name="title_activity_quiz_past">QuizPast</string>
-    <string name="greeting">Jank Greeting</string>
+    <string name="title_activity_quiz_search">Quiz Search</string>
+    <string name="title_activity_quiz_taker">Quiz Taker</string>
+    <string name="title_activity_quiz_creator">Quiz Creator</string>
+    <string name="title_activity_quiz_results">Quiz Results</string>
+    <string name="title_activity_quiz_past">Quiz Past</string>
+    <string name="greeting">Greeting</string>
 </resources>
