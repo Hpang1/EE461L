@@ -14,6 +14,9 @@ import android.widget.RelativeLayout;
 
 public class QuizCreator extends AppCompatActivity {
 
+    LinearLayout layout;
+    int numquestions = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +26,7 @@ public class QuizCreator extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        LinearLayout layout = (LinearLayout)findViewById(R.id.createLayout);
+        layout = (LinearLayout)findViewById(R.id.createLayout);
         EditText question = new EditText(this);
         question.setText("Sample Question");
 
@@ -32,12 +35,29 @@ public class QuizCreator extends AppCompatActivity {
         EditText answer1 = new EditText(this);
         answer1.setText("Sample Answer Choice");
         Button newQuestion = new Button(this);
+        numquestions += 1;
+        newQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(numquestions < 5){
+                    numquestions += 1;
+                    addChoice();
+                } else {
+                    //add choice without button
+                }
+
+            }
+        });
         questionLayout.addView(answer1);
         questionLayout.addView(newQuestion);
 
         layout.addView(question);
         layout.addView(questionLayout);
 
+
+    }
+
+    public void addChoice(){
 
     }
 
