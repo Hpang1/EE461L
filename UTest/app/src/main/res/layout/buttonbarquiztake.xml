@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="false"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentTop="false"
+        android:layout_marginTop="0dp">
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/goprev"
+            android:layout_weight="0"
+            android:background="@drawable/prevquestion"
+            android:layout_marginLeft="30dp"
+            android:contentDescription="prevquestion" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right" >
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/gonext"
+                android:background="@drawable/nextquestion"
+                android:gravity="right"
+                android:layout_marginRight="30dp"
+                android:contentDescription="nextquestion" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
