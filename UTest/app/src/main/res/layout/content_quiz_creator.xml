@@ -2,6 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/question"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -10,12 +12,45 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.team8.utest.QuizCreator"
-    tools:showIn="@layout/activity_quiz_creator">
+    tools:showIn="@layout/activity_quiz_creator"
+    android:clipChildren="false">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <EditText
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/createLayout"
-        ></LinearLayout>
+        android:layout_height="wrap_content"
+        android:id="@+id/questionText"/>
+
+    <include
+        android:id="@+id/choice1"
+        android:layout_below="@id/questionText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/choice"></include>
+
+    <include
+        android:id="@+id/choice2"
+        android:layout_below="@id/choice1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/choice"></include>
+    <include
+        android:id="@+id/choice3"
+        android:layout_below="@id/choice2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/choice"></include>
+    <include
+        android:id="@+id/choice4"
+        android:layout_below="@id/choice3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/choice"></include>
+    <include
+        android:id="@+id/choice5"
+        android:layout_below="@id/choice4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/choice"></include>
+
+
 </RelativeLayout>

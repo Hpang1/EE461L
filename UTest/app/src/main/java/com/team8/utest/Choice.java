@@ -1,9 +1,11 @@
 package com.team8.utest;
 
+import java.io.Serializable;
+
 /**
  * Created by mgrif on 3/26/2016.
  */
-public class Choice {
+public class Choice implements Serializable{
     private String answer;
     private boolean isCorrect;
 

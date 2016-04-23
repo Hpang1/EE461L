@@ -1,11 +1,12 @@
 package com.team8.utest;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by mgrif on 3/26/2016.
  */
-public class Quiz {
+public class Quiz implements Serializable{
     private ArrayList<Question> questions;
     private String name;
     private String creator;
