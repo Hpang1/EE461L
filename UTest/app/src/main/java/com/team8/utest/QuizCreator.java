@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
@@ -66,6 +67,37 @@ public class QuizCreator extends AppCompatActivity {
             choiceArray[i] = choice;
             setChoice(choice, i);
         }
+        RelativeLayout bar = (RelativeLayout) findViewById(R.id.createBar);
+        ImageButton previous = (ImageButton) bar.findViewById(R.id.prevquestion);
+        ImageButton next = (ImageButton)bar.findViewById(R.id.nextquestion);
+        ImageButton add = (ImageButton)bar.findViewById(R.id.newquestion);
+        ImageButton delete = (ImageButton)bar.findViewById(R.id.delquestion);
+        previous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(currentQuestion == 0){return;}
+                
+
+            }
+        });
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
 
 
@@ -76,8 +108,8 @@ public class QuizCreator extends AppCompatActivity {
     }
 
     private RelativeLayout setChoice(RelativeLayout layout, int i){
-        TextView number = (TextView) layout.findViewById(R.id.number);
-        number.setText(Integer.toString(i+1));
+        //TextView number = (TextView) layout.findViewById(R.id.number);
+        //number.setText(Integer.toString(i+1));
         CheckBox correct = (CheckBox) layout.findViewById(R.id.correct);
         correct.setTag(i);
         correct.setOnClickListener(new View.OnClickListener() {

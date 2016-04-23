@@ -24,6 +24,5 @@
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_quiz_creator" />
-    <include layout="@layout/buttonbarquizcreate"/>
 
 </android.support.design.widget.CoordinatorLayout>
