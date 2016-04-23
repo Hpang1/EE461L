@@ -20,41 +20,50 @@
         android:layout_height="wrap_content"
         android:id="@+id/questionText"
         android:layout_above="@id/choice1"/>
-
     <include
-        android:id="@+id/choice1"
-        android:layout_above="@id/choice2"
+        android:id="@+id/createBar"
+        layout="@layout/buttonbarquizcreate">
+    </include>
+    <include
+        android:id="@+id/choice5"
+        android:layout_above="@id/createBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/choice"></include>
-
-    <include
-        android:id="@+id/choice2"
-        android:layout_above="@id/choice3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/choice"></include>
-    <include
-        android:id="@+id/choice3"
-        android:layout_above="@id/choice4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dip"
         layout="@layout/choice"></include>
     <include
         android:id="@+id/choice4"
         android:layout_above="@id/choice5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dip"
         layout="@layout/choice"></include>
     <include
-        android:id="@+id/choice5"
-        android:layout_above="@id/createBar"
+        android:id="@+id/choice3"
+        android:layout_above="@id/choice4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dip"
         layout="@layout/choice"></include>
     <include
-        android:id="@+id/createBar"
-        layout="@layout/buttonbarquizcreate">
-    </include>
+        android:id="@+id/choice2"
+        android:layout_above="@id/choice3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dip"
+        layout="@layout/choice"></include>
+    <include
+        android:id="@+id/choice1"
+        android:layout_above="@id/choice2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dip"
+        layout="@layout/choice"></include>
+
+
+
+
+
+
 
 </RelativeLayout>
