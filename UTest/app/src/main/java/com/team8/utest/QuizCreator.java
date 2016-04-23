@@ -79,16 +79,20 @@ public class QuizCreator extends AppCompatActivity {
         TextView number = (TextView) layout.findViewById(R.id.number);
         number.setText(Integer.toString(i+1));
         CheckBox correct = (CheckBox) layout.findViewById(R.id.correct);
-        if(i == 0){
-            correct.setChecked(true);
-        }
         correct.setTag(i);
         correct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                v.setClickable(false);
                 Integer k = (Integer) v.getTag();
+                EditText text = (EditText) choiceArray[k].findViewById(R.id.textView);
+                if(text.getText().toString().length() == 0){
+                    CheckBox check = (CheckBox) v;
+                    check.setChecked(false);
+                    return;
+                }
+                v.setClickable(false);
                 correctAnswer.set(currentQuestion, k);  //get choice number
+
 
                 for(int i = 0; i < 5; i++){
                     if(i != k){
