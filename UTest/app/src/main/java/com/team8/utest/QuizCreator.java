@@ -49,7 +49,7 @@ public class QuizCreator extends AppCompatActivity {
 
         //layout = (LinearLayout)findViewById(R.id.createLayout);
         question = (EditText) findViewById(R.id.questionText);
-        question.setText("Sample Question");
+        //question.setText("Sample Question");
 
         numquestions += 1;
         correctAnswer.add(0);   //default 0 correct
@@ -122,10 +122,20 @@ public class QuizCreator extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                quiz.removeQuestion(currentQuestion);
-                Question prevQuestion = quiz.getQuestion(currentQuestion - 1);
-                repopulateQuestion(prevQuestion);
-                currentQuestion--;
+                if(quiz.quizSize() > 1){
+                    quiz.removeQuestion(currentQuestion);
+                    if(currentQuestion > 0){
+                        Question prevQuestion = quiz.getQuestion(currentQuestion - 1);
+                        repopulateQuestion(prevQuestion);
+                        currentQuestion--;
+                    } else{
+                        Question nextQuestion = quiz.getQuestion(currentQuestion + 1);
+                        repopulateQuestion(nextQuestion);
+                        currentQuestion++;
+                    }
+
+                }
+
             }
         });
 
