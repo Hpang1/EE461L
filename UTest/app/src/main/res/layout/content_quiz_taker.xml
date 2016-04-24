@@ -12,11 +12,59 @@
     tools:context="com.team8.utest.QuizTaker"
     tools:showIn="@layout/activity_quiz_taker">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <include
+        android:id="@+id/takeBar"
+        layout="@layout/buttonbarquiztake"
+        android:layout_height="40dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true">
+    </include>
+    <Button
+        android:id="@+id/answer5"
+        android:layout_above="@id/takeBar"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginBottom="10dip"
+        android:background="@drawable/answerbutton"></Button>
+    <Button
+        android:id="@+id/answer4"
+        android:layout_above="@id/answer5"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginBottom="10dip"
+        android:background="@drawable/answerbutton"></Button>
+    <Button
+        android:id="@+id/answer3"
+        android:layout_above="@id/answer4"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginBottom="10dip"
+        android:background="@drawable/answerbutton"></Button>
+    <Button
+        android:id="@+id/answer2"
+        android:layout_above="@id/answer3"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginBottom="10dip"
+        android:background="@drawable/answerbutton"></Button>
+    <Button
+        android:id="@+id/answer1"
+        android:layout_above="@id/answer2"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginBottom="10dip"
+        android:background="@drawable/answerbutton"></Button>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/questionText"
+        android:layout_above="@id/answer1"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"></LinearLayout>
+        android:background="@drawable/customedittext"
+        android:layout_marginBottom="10dp"
+        android:gravity="top" />
+
+
+
 </RelativeLayout>

@@ -22,8 +22,6 @@
         android:layout_height="wrap_content"
         android:gravity="right"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="false"
         android:checked="false"
         android:layout_alignBottom="@+id/textView" />
 

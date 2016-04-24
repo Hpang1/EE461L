@@ -7,4 +7,6 @@
     <string name="title_activity_quiz_results">Quiz Results</string>
     <string name="title_activity_quiz_past">Quiz Past</string>
     <string name="greeting">Greeting</string>
+    <string name="namehint"><i>Add your name here</i></string>
+    <string name="titlehint"><i>Add quiz title here</i></string>
 </resources>

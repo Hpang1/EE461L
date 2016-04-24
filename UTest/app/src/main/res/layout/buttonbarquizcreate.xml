@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:weightSum="1"
     android:orientation="horizontal"
     android:baselineAligned="false">
@@ -13,17 +13,17 @@
         android:layout_alignParentBottom="true">
 
         <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:id="@+id/prevquestion"
             android:layout_weight="0"
             android:background="@drawable/prevquestion"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="10dp"
             android:contentDescription="prevquestion" />
 
         <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:id="@+id/delquestion"
             android:background="@drawable/deletequestion"
             android:layout_marginLeft="10dp"
@@ -36,8 +36,8 @@
             android:gravity="right">
 
             <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:id="@+id/newquestion"
                 android:background="@drawable/newquestion"
                 android:layout_marginRight="10dp"
@@ -45,12 +45,12 @@
                 android:contentDescription="newquestion" />
 
             <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:id="@+id/nextquestion"
                 android:background="@drawable/nextquestion"
                 android:gravity="right"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="10dp"
                 android:contentDescription="nextquestion" />
         </LinearLayout>
     </LinearLayout>

@@ -23,6 +23,5 @@
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_quiz_taker" />
-    <include layout="@layout/buttonbarquiztake" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -40,10 +40,9 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
             android:clickable="true"
-            android:background="@drawable/mybutton"
+            android:background="@drawable/menubutton"
             android:onClick="goSearch"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#000000" />
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Button
             android:layout_width="match_parent"
@@ -51,13 +50,12 @@
             android:text="Create Quiz"
             android:id="@+id/createQuizzes"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/mybutton"
+            android:background="@drawable/menubutton"
             android:layout_marginBottom="20dp"
             android:onClick="goCreate"
             android:clickable="true"
             android:typeface="normal"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#000000" />
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Button
             android:layout_width="match_parent"
@@ -65,13 +63,12 @@
             android:text="My Quizzes"
             android:id="@+id/myQuizzes"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/mybutton"
+            android:background="@drawable/menubutton"
             android:layout_marginBottom="20dp"
             android:onClick="goPast"
             android:clickable="true"
             android:typeface="normal"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#000000" />
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Button
             android:layout_width="match_parent"
@@ -79,15 +76,14 @@
             android:text="My Results"
             android:id="@+id/myResults"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/mybutton"
+            android:background="@drawable/menubutton"
             android:allowUndo="true"
             android:layout_marginBottom="20dp"
             android:singleLine="true"
             android:onClick="goResults"
             android:clickable="true"
             android:typeface="normal"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#000000" />
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Button
             android:layout_width="match_parent"
@@ -102,9 +98,8 @@
             android:paddingLeft="100dp"
             android:paddingRight="100dp"
             android:typeface="normal"
-            android:background="@drawable/mybutton"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#000000" />
+            android:background="@drawable/menubutton"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </LinearLayout>
 </RelativeLayout>

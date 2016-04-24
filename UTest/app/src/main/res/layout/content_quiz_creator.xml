@@ -19,7 +19,7 @@
     <include
         android:id="@+id/createBar"
         layout="@layout/buttonbarquizcreate"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true">
     </include>
@@ -28,35 +28,35 @@
         android:layout_above="@id/createBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dip"
+        android:layout_marginBottom="8dp"
         layout="@layout/choice"></include>
     <include
         android:id="@+id/choice4"
         android:layout_above="@id/choice5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dip"
+        android:layout_marginBottom="8dp"
         layout="@layout/choice"></include>
     <include
         android:id="@+id/choice3"
         android:layout_above="@id/choice4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dip"
+        android:layout_marginBottom="8dp"
         layout="@layout/choice"></include>
     <include
         android:id="@+id/choice2"
         android:layout_above="@id/choice3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dip"
+        android:layout_marginBottom="8dp"
         layout="@layout/choice"></include>
     <include
         android:id="@+id/choice1"
         android:layout_above="@id/choice2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dip"
+        android:layout_marginBottom="8dip"
         layout="@layout/choice"></include>
 
     <EditText
@@ -66,7 +66,7 @@
         android:layout_above="@id/choice1"
         android:layout_alignParentTop="true"
         android:background="@drawable/customedittext"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="10dp"
         android:gravity="top" />
 
 
