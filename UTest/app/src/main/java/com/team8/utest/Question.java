@@ -10,11 +10,19 @@ public class Question implements Serializable {
     String question;
     ArrayList<Choice> choices;
 
+    public boolean validChoice(int i){
+        return i < choices.size();
+    }
+
     public Question(String question){
         this.question = question;
     }
 
     public Question(){}
+
+    public Choice getChoice(int i){
+        return choices.get(i);
+    }
 
     public void addChoice(Choice choice){
         choices.add(choice);

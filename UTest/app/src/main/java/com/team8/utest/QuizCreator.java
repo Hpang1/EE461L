@@ -24,10 +24,11 @@ public class QuizCreator extends AppCompatActivity {
 
     //LinearLayout layout;
     int numquestions = 0;
-    Quiz quiz;
+    Quiz quiz = new Quiz();
     ArrayList<Integer> correctAnswer = new ArrayList<>();
     int currentQuestion = 0;
     RelativeLayout[] choiceArray = new RelativeLayout[5];
+    EditText question;
 
 
 
@@ -47,7 +48,7 @@ public class QuizCreator extends AppCompatActivity {
         //LinearLayout parent = (LinearLayout) inflater.inflate(R.layout.activity_quiz_creator, null);
 
         //layout = (LinearLayout)findViewById(R.id.createLayout);
-        EditText question = (EditText) findViewById(R.id.questionText);
+        question = (EditText) findViewById(R.id.questionText);
         question.setText("Sample Question");
 
         numquestions += 1;
@@ -76,26 +77,55 @@ public class QuizCreator extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(currentQuestion == 0){return;}
-                
+                if(saveQuestion()){
+                    Question prevQuestion = quiz.getQuestion(currentQuestion - 1);
+                    repopulateQuestion(prevQuestion);
+                    currentQuestion--;
+                } else{
+                    //display error, no choices
+                }
 
             }
         });
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(quiz.validQuestion(currentQuestion+1)){
+                    if(saveQuestion()){
+                        Question nextQuestion = quiz.getQuestion(currentQuestion + 1);
+                        repopulateQuestion(nextQuestion);
+                        currentQuestion++;
+                    } else{
+                        //display error, no choices
+                    }
+
+                } else{
+                    //setContentView(R.id.something);
+                }
+
 
             }
         });
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(saveQuestion()){
+                    Question blankQuestion = new Question();
+                    repopulateQuestion(blankQuestion);
+                    currentQuestion++;
+                } else{
+                    //error, don't need new question yet
+                }
 
             }
         });
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                quiz.removeQuestion(currentQuestion);
+                Question prevQuestion = quiz.getQuestion(currentQuestion - 1);
+                repopulateQuestion(prevQuestion);
+                currentQuestion--;
             }
         });
 
@@ -106,6 +136,42 @@ public class QuizCreator extends AppCompatActivity {
        /// setContentView(parent);
 
     }
+
+    public void repopulateQuestion(Question prevQuestion){
+        question.setText(prevQuestion.getQuestion());
+        for(int i = 0; i < 5; i++){
+            if(prevQuestion.validChoice(i)){
+                EditText choiceText = (EditText) choiceArray[i].findViewById(R.id.textView);
+                Choice choice = prevQuestion.getChoice(i);
+                choiceText.setText(choice.getAnswer());
+                CheckBox correct = (CheckBox) choiceArray[i].findViewById(R.id.correct);
+                correct.setChecked(choice.correctAnswer());
+            }
+        }
+
+    }
+
+    public boolean saveQuestion(){
+        Question newQuestion = new Question();
+        newQuestion.question = question.getText().toString();
+        int choices = 0;
+        for(int i = 0; i < 5; i++){
+            EditText choiceText = (EditText) choiceArray[i].findViewById(R.id.textView);
+            if(choiceText.getText().toString().length() != 0){
+                choices++;
+                Choice newChoice = new Choice(choiceText.getText().toString());
+                CheckBox correctBox = (CheckBox) choiceArray[i].findViewById(R.id.correct);
+                newChoice.setCorrect(correctBox.isChecked());
+            }
+        }
+        if(choices >= 2){
+            quiz.editQuestion(currentQuestion, newQuestion);
+            return true;
+        } else{
+            return false;
+        }
+    }
+
 
     private RelativeLayout setChoice(RelativeLayout layout, int i){
         //TextView number = (TextView) layout.findViewById(R.id.number);
