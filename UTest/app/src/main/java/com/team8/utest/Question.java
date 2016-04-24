@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class Question implements Serializable {
     String question;
-    ArrayList<Choice> choices;
+    ArrayList<Choice> choices = new ArrayList<>();
 
     public boolean validChoice(int i){
         return i < choices.size();
