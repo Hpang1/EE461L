@@ -26,7 +26,7 @@
             android:id="@+id/editText"
             android:layout_gravity="center_horizontal"
             android:textIsSelectable="false"
-            android:text="search text here" />
+            android:hint="@string/searchtext" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -42,7 +42,6 @@
                 android:text="Search Title"
                 android:id="@+id/searchAuthor"
                 android:layout_marginRight="10dp"
-                android:textColor="#000000"
                 android:textSize="15dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:background="@drawable/menubutton" />
@@ -54,7 +53,6 @@
                 android:text="Search Creator"
                 android:id="@+id/searchCreator"
                 android:layout_marginLeft="10dp"
-                android:textColor="#000000"
                 android:textSize="15dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:background="@drawable/menubutton" />

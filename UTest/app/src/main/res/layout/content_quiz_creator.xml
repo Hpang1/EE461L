@@ -68,7 +68,9 @@
         android:background="@drawable/customedittext"
         android:layout_marginBottom="10dp"
         android:gravity="top"
-        android:hint="Enter question here" />
+        android:hint="Enter question here"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
 
 
 
