@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="We need a few more things before we can create your quiz."
+            android:text="We need a couple more things before we can create your quiz."
             android:id="@+id/blahblah"
             android:layout_marginTop="30dp"
             android:layout_alignParentLeft="true"

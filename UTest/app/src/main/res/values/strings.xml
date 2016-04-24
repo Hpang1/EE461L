@@ -9,5 +9,5 @@
     <string name="greeting">Greeting</string>
     <string name="namehint"><i>Add your name here</i></string>
     <string name="titlehint"><i>Add quiz title here</i></string>
-    <string name="searchtext"><i>Enter search parameter</i></string>
+    <string name="quizcreatorstring"><i>Enter question here</i></string>
 </resources>

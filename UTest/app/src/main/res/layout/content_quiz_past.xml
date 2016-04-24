@@ -24,9 +24,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="say something here"
+            android:text="Your Quiz Results"
             android:id="@+id/pastQuizText"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:textSize="20dp" />
 
         <ScrollView
             android:layout_width="match_parent"

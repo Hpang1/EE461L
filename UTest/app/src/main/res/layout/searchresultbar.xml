@@ -7,30 +7,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/quiztitle"
+        android:text="Quiz Name"
+        android:id="@+id/quizname"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="false"
         android:layout_toLeftOf="@+id/creator"
         android:layout_toStartOf="@+id/creator"
         android:paddingLeft="7dp"
-        android:background="@drawable/searchresult"
+        android:background="@drawable/searchresultbar"
         android:textSize="13dp"
-        android:layout_marginRight="-2dp" />
+        android:layout_marginRight="-3dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text="Creator"
         android:id="@+id/creator"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/searchresult"
+        android:background="@drawable/searchresultbar"
         android:nestedScrollingEnabled="false"
         android:minWidth="90dp"
         android:maxWidth="90dp"
-        android:textSize="13dp" />
+        android:textSize="13dp"
+        android:autoText="false" />
 </RelativeLayout>
