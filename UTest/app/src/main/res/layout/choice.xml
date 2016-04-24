@@ -23,6 +23,6 @@
         android:gravity="right"
         android:layout_alignParentRight="true"
         android:checked="false"
-        android:layout_alignBottom="@+id/textView" />
+        android:layout_centerVertical="true" />
 
 </RelativeLayout>
