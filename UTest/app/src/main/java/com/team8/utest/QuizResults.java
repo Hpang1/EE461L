@@ -17,6 +17,8 @@ public class QuizResults extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //grab all previous quizzes
+        //grab results for each corresponding quiz
     }
 
 }

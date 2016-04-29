@@ -17,6 +17,8 @@ public class QuizPast extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //grab all previously created quizzes
+        //possibly grab from server all corresponding results (or maybe do that when a quiz is selected)
     }
 
 }
