@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Your Quiz Results"
+            android:text="Your Quizzes"
             android:id="@+id/pastQuizText"
             android:layout_gravity="center_horizontal"
             android:textSize="20dp" />
