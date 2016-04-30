@@ -28,8 +28,8 @@ public class Quiz implements Serializable{
         this.name = name;
     }
 
-    public void setTime(int seconds){
-        time = (long) (seconds * 1000);
+    public void setTime(int minutes){
+        time = (long) (minutes * 1000 * 60);
     }
 
     public Quiz(){
