@@ -23,6 +23,11 @@ public class Quiz implements Serializable{
         this.creator = creator;
     }
 
+    public void setNames(String creator, String name){
+        this.creator = creator;
+        this.name = name;
+    }
+
     public void setTime(int seconds){
         time = (long) (seconds * 1000);
     }
@@ -67,7 +72,7 @@ public class Quiz implements Serializable{
 
     public boolean validQuestion(int i){
 
-        return (i < questions.size()) && (i >= 0);
+        return (i < questions.size()) && (i >= 0) && (questions.size() > 1);
     }
 
     public void editQuestion(int index, Question question){

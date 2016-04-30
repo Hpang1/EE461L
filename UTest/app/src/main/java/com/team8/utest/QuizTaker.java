@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -168,27 +169,29 @@ public class QuizTaker extends AppCompatActivity {
         final TextView timer = (TextView) findViewById(R.id.textView2);    //change later
         quiz.setTime(15);    //remove later
         long time = quiz.time; //change later
+
         //time = 15000;//remove later
-        timeKeeper = new CountDownTimer(time, 1000){
+        if(time > 0){
+            timeKeeper = new CountDownTimer(time, 1000){
 
-            @Override
-            public void onTick(long millisUntilFinished) {
-                int minutes = (int) (millisUntilFinished / 60000);
-                int seconds = (int) ((millisUntilFinished - (minutes * 60000)) / 1000);
-                if(seconds > 9){
-                    timer.setText(String.format("%d:%d", minutes, seconds));
-                } else{
-                    timer.setText(String.format("%d:0%d", minutes, seconds));
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    int minutes = (int) (millisUntilFinished / 60000);
+                    int seconds = (int) ((millisUntilFinished - (minutes * 60000)) / 1000);
+                    if(seconds > 9){
+                        timer.setText(String.format("%d:%d", minutes, seconds));
+                    } else{
+                        timer.setText(String.format("%d:0%d", minutes, seconds));
+                    }
                 }
-            }
 
-            @Override
-            public void onFinish() {
-                saveResults();
-            }
-        };
-        timeKeeper.start();
-
+                @Override
+                public void onFinish() {
+                    saveResults();
+                }
+            };
+            timeKeeper.start();
+        }
 
     }
 
