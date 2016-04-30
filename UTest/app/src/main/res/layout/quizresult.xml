@@ -5,6 +5,17 @@
     android:layout_marginTop="-2dp"
     android:id="@+id/myquizresult">
 
+    <TextView
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:text="10/10"
+        android:id="@+id/resultscore"
+        android:background="@drawable/searchresult"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="24dp"
+        android:gravity="center_vertical|center_horizontal" />
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
@@ -30,16 +41,5 @@
             android:paddingLeft="25dp"
             android:textSize="14dp" />
     </LinearLayout>
-
-    <TextView
-        android:layout_width="90dp"
-        android:layout_height="50dp"
-        android:text="10/10"
-        android:id="@+id/resultscore"
-        android:background="@drawable/searchresult"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:textSize="24dp"
-        android:gravity="center_vertical|center_horizontal" />
 
 </RelativeLayout>
