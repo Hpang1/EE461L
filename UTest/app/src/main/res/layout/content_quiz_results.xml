@@ -27,12 +27,26 @@
             android:id="@+id/resultsQuizText"
             android:layout_gravity="center_horizontal"
             android:textSize="20dp"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginBottom="10dp" />
+
+        <include
+            android:id="@+id/quizresultbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/quizresultbar"></include>
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/resultsScroll"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal" >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/resultsScroll2"></LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </RelativeLayout>

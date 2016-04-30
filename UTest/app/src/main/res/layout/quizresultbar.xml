@@ -6,23 +6,23 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="23dp"
-        android:text="Quiz Name"
-        android:id="@+id/QuizNameButton"
+        android:text="Quiz"
+        android:id="@+id/QuizButton"
         android:textSize="13dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:background="@drawable/searchresultbar"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="false"
         android:textAlignment="textStart"
-        android:layout_toStartOf="@+id/QuizAuthorButton"
+        android:layout_toStartOf="@+id/QuizScoreButton"
         android:layout_alignBottom="@+id/QuizAuthorButton"
         android:paddingLeft="5dp" />
 
     <Button
         android:layout_width="89dp"
         android:layout_height="23dp"
-        android:text="Author"
-        android:id="@+id/QuizAuthorButton"
+        android:text="Score"
+        android:id="@+id/QuizScoreButton"
         android:background="@drawable/searchresultbar"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textAlignment="textStart"

@@ -27,13 +27,27 @@
             android:text="Your Quizzes"
             android:id="@+id/pastQuizText"
             android:layout_gravity="center_horizontal"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp" />
+
+        <include
+            android:id="@+id/quizpastbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/searchresultbar"></include>
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/pastScroll"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/pastScroll2"></LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 </RelativeLayout>
