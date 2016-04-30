@@ -43,6 +43,7 @@ public class QuizTaker extends AppCompatActivity {
     Drawable selected;
     Drawable unselected;
     CountDownTimer timeKeeper;
+    boolean timerRunning;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -56,12 +57,12 @@ public class QuizTaker extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
          //code in future
-        //byte[] serialized = getIntent().getByteArrayExtra("quiz");
-        //quiz = Quiz.deserialize(serialized);
+        byte[] serialized = getIntent().getByteArrayExtra("quiz");
+        quiz = Quiz.deserialize(serialized);
 
 
         //will change this later
-        Quiz testquiz = new Quiz();
+        /*Quiz testquiz = new Quiz();
         Question question1 = new Question();
         Question question2 = new Question();
         Question question3 = new Question();
@@ -81,7 +82,7 @@ public class QuizTaker extends AppCompatActivity {
         testquiz.addQuestion(question3);
 
         byte[] serialize = testquiz.serialize();
-        quiz = Quiz.deserialize(serialize);
+        quiz = Quiz.deserialize(serialize);*/
         //end of example quiz
 
 
@@ -167,11 +168,12 @@ public class QuizTaker extends AppCompatActivity {
 
 
         final TextView timer = (TextView) findViewById(R.id.textView2);    //change later
-        quiz.setTime(15);    //remove later
+        //quiz.setTime(15);    //remove later
         long time = quiz.time; //change later
 
         //time = 15000;//remove later
         if(time > 0){
+            timerRunning = true;
             timeKeeper = new CountDownTimer(time, 1000){
 
                 @Override
@@ -191,6 +193,8 @@ public class QuizTaker extends AppCompatActivity {
                 }
             };
             timeKeeper.start();
+        } else{
+            timerRunning = false;
         }
 
     }
@@ -256,7 +260,9 @@ public class QuizTaker extends AppCompatActivity {
     }
 
     public void saveResults(){
-        timeKeeper.cancel();
+        if(timerRunning){
+            timeKeeper.cancel();
+        }
         double grade = quiz.gradeQuiz(results);
         String filename = "results.txt";
         try {
@@ -282,8 +288,25 @@ public class QuizTaker extends AppCompatActivity {
             e.printStackTrace();
         }
         //go to results screen/display grade somehow
-        Intent intent = new Intent(QuizTaker.this, MainActivity.class);
-        startActivity(intent);
+        AlertDialog.Builder builder = new AlertDialog.Builder(QuizTaker.this);
+        builder.setPositiveButton("Return home", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(QuizTaker.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("New quiz", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(QuizTaker.this, QuizSearch.class);
+                startActivity(intent);
+            }
+        });
+        builder.setMessage("Grade: " + Integer.toString((int) grade));
+        builder.setCancelable(false);
+        AlertDialog dialog = builder.create();
+        dialog.show();
 
     }
 

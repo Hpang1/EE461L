@@ -15,7 +15,7 @@ public class Quiz implements Serializable{
     private ArrayList<Question> questions = new ArrayList<>();
     public String name;
     public String creator;
-    public long time;
+    public long time = -1;
     //private String password;
 
     public Quiz(String name, String creator){
