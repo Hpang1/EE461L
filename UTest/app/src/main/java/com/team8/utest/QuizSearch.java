@@ -50,14 +50,24 @@ public class QuizSearch extends AppCompatActivity {
                 //get results
                 quizzes = new ArrayList<>();    //replace with response from db
 
-
                 //example code
+                Question q1 = new Question("q1");
+                Question q2 = new Question("q2");
+                Choice c1 =  new Choice("c1");
+                Choice c2 = new Choice("c2");
+                Choice c3 = new Choice("c3");
+                c2.setCorrect(true);
+                q1.addChoice(c1);
+                q1.addChoice(c2);
+                q2.addChoice(c2);
+                q2.addChoice(c3);
                 for(int i = 0; i < 100; i++){
                     Quiz quiz = new Quiz(String.format("quiz%d", i), "creator1");
+                    quiz.addQuestion(q1);
+                    quiz.addQuestion(q2);
                     quizzes.add(quiz);
                 }
                 //end example code
-
 
                 populateScroll();
                 //search with this text
