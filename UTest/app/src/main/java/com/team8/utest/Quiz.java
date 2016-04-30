@@ -1,5 +1,10 @@
 package com.team8.utest;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -18,6 +23,33 @@ public class Quiz implements Serializable{
     }
 
     public Quiz(){
+    }
+
+    public byte[] serialize(){
+        byte[] data = null;
+        try {
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            ObjectOutputStream os = new ObjectOutputStream(outputStream);
+            os.writeObject(this);
+            data = outputStream.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+    public static Quiz deserialize(byte[] input){
+        ByteArrayInputStream in = new ByteArrayInputStream(input);
+        Quiz object = null;
+        try{
+            ObjectInputStream is = new ObjectInputStream(in);
+            object = (Quiz) is.readObject();
+        } catch (IOException e){
+            e.printStackTrace();
+        } catch (ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        return object;
     }
 
     public int quizSize(){
