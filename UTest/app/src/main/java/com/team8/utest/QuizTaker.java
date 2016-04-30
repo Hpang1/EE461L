@@ -195,6 +195,7 @@ public class QuizTaker extends AppCompatActivity {
 
     }
 
+    //comment
     public void setupButtons(){ //
         Question question = quiz.getQuestion(currentQuestion);
         for(int i = 0; i < 5; i++){
