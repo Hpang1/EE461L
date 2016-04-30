@@ -15,11 +15,16 @@ public class Quiz implements Serializable{
     private ArrayList<Question> questions = new ArrayList<>();
     public String name;
     public String creator;
+    public long time;
     //private String password;
 
     public Quiz(String name, String creator){
         this.name = name;
         this.creator = creator;
+    }
+
+    public void setTime(int seconds){
+        time = (long) (seconds * 1000);
     }
 
     public Quiz(){
@@ -61,7 +66,8 @@ public class Quiz implements Serializable{
     }
 
     public boolean validQuestion(int i){
-        return i < questions.size();
+
+        return (i < questions.size()) && (i >= 0);
     }
 
     public void editQuestion(int index, Question question){
