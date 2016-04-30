@@ -1,20 +1,37 @@
 package com.team8.utest;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.style.BackgroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class QuizTaker extends AppCompatActivity {
@@ -23,9 +40,14 @@ public class QuizTaker extends AppCompatActivity {
     int currentQuestion = 0;
     Button[] buttons = new Button[5];
     ArrayList<Integer> results;
+    Drawable selected;
+    Drawable unselected;
+    CountDownTimer timeKeeper;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_taker);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -33,8 +55,13 @@ public class QuizTaker extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+         //code in future
+        //byte[] serialized = getIntent().getByteArrayExtra("quiz");
+        //quiz = Quiz.deserialize(serialized);
+
+
         //will change this later
-        quiz = new Quiz();
+        Quiz testquiz = new Quiz();
         Question question1 = new Question();
         Question question2 = new Question();
         Question question3 = new Question();
@@ -49,15 +76,19 @@ public class QuizTaker extends AppCompatActivity {
         question3.addChoice(choice1);
         question3.addChoice(choice2);
         question3.addChoice(choice3);
-        quiz.addQuestion(question1);
-        quiz.addQuestion(question2);
-        quiz.addQuestion(question3);
+        testquiz.addQuestion(question1);
+        testquiz.addQuestion(question2);
+        testquiz.addQuestion(question3);
+
+        byte[] serialize = testquiz.serialize();
+        quiz = Quiz.deserialize(serialize);
         //end of example quiz
 
 
-        results = new ArrayList<>(quiz.quizSize());
-        for(int i = 0; i < results.size(); i++){
-            results.set(i, -1);
+        int size = quiz.quizSize();
+        results = new ArrayList<>(size);
+        for(int i = 0; i < size; i++){
+            results.add(-1);
         }
         currentQuestion = 0;
 
@@ -86,6 +117,9 @@ public class QuizTaker extends AppCompatActivity {
                 } else{
                     Toast toast = Toast.makeText(getApplicationContext(), "No prior questions", Toast.LENGTH_SHORT);
                     toast.show();
+                    currentQuestion++;
+                    question.setText(quiz.getQuestion(currentQuestion).getQuestion());
+                    setupButtons();
                 }
 
             }
@@ -99,7 +133,7 @@ public class QuizTaker extends AppCompatActivity {
                     setupButtons();
                 } else{
                     if(allAnswered()){
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                        AlertDialog.Builder builder = new AlertDialog.Builder(QuizTaker.this);
                         builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -131,6 +165,34 @@ public class QuizTaker extends AppCompatActivity {
             }
         });
 
+
+        final TextView timer = (TextView) findViewById(R.id.textView2);    //change later
+        quiz.setTime(15);    //remove later
+        long time = quiz.time; //change later
+
+        //time = 15000;//remove later
+        if(time > 0){
+            timeKeeper = new CountDownTimer(time, 1000){
+
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    int minutes = (int) (millisUntilFinished / 60000);
+                    int seconds = (int) ((millisUntilFinished - (minutes * 60000)) / 1000);
+                    if(seconds > 9){
+                        timer.setText(String.format("%d:%d", minutes, seconds));
+                    } else{
+                        timer.setText(String.format("%d:0%d", minutes, seconds));
+                    }
+                }
+
+                @Override
+                public void onFinish() {
+                    saveResults();
+                }
+            };
+            timeKeeper.start();
+        }
+
     }
 
     public void setupButtons(){ //
@@ -141,11 +203,10 @@ public class QuizTaker extends AppCompatActivity {
                 buttons[i].setClickable(true);
                 buttons[i].setPressed(false);
                 //change color
+                //buttons[i].setBackgroundColor(Color.WHITE);   //change later
+                buttons[i].setBackgroundResource(R.drawable.answerbutton);
                 buttons[i].setVisibility(View.VISIBLE);
-                if(results.get(i) != -1){
-                    buttons[i].setPressed(true);
-                    //change color
-                }
+
             } else{
                 buttons[i].setClickable(false);
                 buttons[i].setVisibility(View.INVISIBLE);
@@ -157,11 +218,15 @@ public class QuizTaker extends AppCompatActivity {
                     Button b = (Button) v;
                     b.setPressed(true);
                     //change color to pressed color
+
+                    b.setBackgroundResource(R.drawable.selectedanswerbutton);
                     int index = (int) b.getTag();
                     for(int i = 0; i < 5; i++){
                         if(i != index){
                             buttons[i].setPressed(false);
+                            buttons[i].setBackgroundResource(R.drawable.answerbutton);
                             //change color to unpressed color
+                            //buttons[i].setBackgroundColor(Color.WHITE);
                         }
                     }
                     results.set(currentQuestion, index);
@@ -178,13 +243,64 @@ public class QuizTaker extends AppCompatActivity {
 
                 }
             });
+
+        }
+        int chosen = results.get(currentQuestion);
+        if(chosen != -1){
+            buttons[chosen].setPressed(true);    //change this
+            buttons[chosen].setBackgroundResource(R.drawable.selectedanswerbutton);
+            //buttons[chosen].setBackgroundColor(Color.RED);
+            //change color
         }
     }
 
     public void saveResults(){
+        timeKeeper.cancel();
         double grade = quiz.gradeQuiz(results);
-        //store in device somewhere or online or both
+        String filename = "results.txt";
+        try {
+            File file = new File(this.getFilesDir(), filename);
+            ArrayList<Results> allResults = null;
+            if (file.exists()) {
+                FileInputStream inputStream = new FileInputStream(file);
+                ObjectInputStream in = new ObjectInputStream(inputStream);
+                allResults = (ArrayList) in.readObject(); //probably change to results object
+                in.close();
+            }if(allResults == null){
+                allResults = new ArrayList<>();
+            }
+
+            Results resultStorage = new Results(quiz, results);
+            allResults.add(resultStorage);
+
+            FileOutputStream outputStream = new FileOutputStream(file);
+            ObjectOutputStream out = new ObjectOutputStream(outputStream);
+            out.writeObject(allResults);
+            out.close();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
         //go to results screen/display grade somehow
+        AlertDialog.Builder builder = new AlertDialog.Builder(QuizTaker.this);
+        builder.setPositiveButton("Return home", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(QuizTaker.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("New quiz", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(QuizTaker.this, QuizSearch.class);
+                startActivity(intent);
+            }
+        });
+        builder.setMessage("Grade: " + Integer.toString((int) grade));
+        builder.setCancelable(false);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
     }
 
     public boolean allAnswered(){

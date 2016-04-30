@@ -1,11 +1,14 @@
 package com.team8.utest;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +35,9 @@ public class QuizCreator extends AppCompatActivity {
     EditText question;
 
 
+    LinearLayout layout;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,8 @@ public class QuizCreator extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        layout = (LinearLayout)((LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.layout, null);
 
         //RelativeLayout parent = (RelativeLayout) findViewById(R.id.question);
 
@@ -104,6 +112,45 @@ public class QuizCreator extends AppCompatActivity {
 
                 } else{
                     //setContentView(R.id.something);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(QuizCreator.this);
+                    builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //not working yet
+                            EditText creatorName = (EditText) layout.findViewById(R.id.creatorName);
+                            EditText quizName = (EditText) layout.findViewById(R.id.quizName);
+                            EditText timeName = (EditText) layout.findViewById(R.id.timeName);
+                            String creator = creatorName.getText().toString();
+                            String name = quizName.getText().toString();
+                            String time = timeName.getText().toString();
+                            int seconds;
+                            if(time.length() > 0){
+                                seconds = Integer.parseInt(time);
+                            } else{
+                                seconds = -1;
+                            }
+                            quiz.setTime(seconds);
+                            quiz.setNames(creator, name);
+                            //send to sql database when done
+
+                        }
+                    });
+                    builder.setNegativeButton("Go Back", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //Question nextQuestion = quiz.getQuestion(currentQuestion);
+                            //repopulateQuestion(nextQuestion);
+                        }
+                    });
+                    builder.setMessage("Submit quiz?");
+                    builder.setCancelable(false);
+                    LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.layout, null);
+
+                    //LinearLayout layout = (LinearLayout)findViewById(R.id.creatorPrompt);
+                    builder.setView(layout);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 }
 
 
