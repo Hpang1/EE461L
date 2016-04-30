@@ -11,6 +11,8 @@ import android.widget.Button;
 
 public class QuizSearch extends AppCompatActivity {
 
+    DBFetch db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +21,8 @@ public class QuizSearch extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        db = new DBFetch();
 
         final SearchView searchBar = (SearchView) findViewById(R.id.searchView2);
         Button searchTitle = (Button) findViewById(R.id.searchAuthor);
@@ -30,6 +34,7 @@ public class QuizSearch extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String text = searchBar.getQuery().toString();
+                
                 //search with this text
                 //populate scroll view with results
                 //set each element's onclick method to start the quiz taker with that quiz

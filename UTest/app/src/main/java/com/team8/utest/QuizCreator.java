@@ -2,6 +2,7 @@ package com.team8.utest;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,6 +23,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class QuizCreator extends AppCompatActivity {
@@ -36,6 +42,7 @@ public class QuizCreator extends AppCompatActivity {
 
 
     LinearLayout layout;
+    DBPush db;
 
 
 
@@ -46,6 +53,7 @@ public class QuizCreator extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        db = new DBPush();
 
         layout = (LinearLayout)((LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.layout, null);
 
@@ -110,50 +118,38 @@ public class QuizCreator extends AppCompatActivity {
                         toast.show();
                     }
 
-                } else{
-                    //setContentView(R.id.something);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(QuizCreator.this);
-                    builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            //not working yet
-                            EditText creatorName = (EditText) layout.findViewById(R.id.creatorName);
-                            EditText quizName = (EditText) layout.findViewById(R.id.quizName);
-                            EditText timeName = (EditText) layout.findViewById(R.id.timeName);
-                            String creator = creatorName.getText().toString();
-                            String name = quizName.getText().toString();
-                            String time = timeName.getText().toString();
-                            int seconds;
-                            if(time.length() > 0){
-                                seconds = Integer.parseInt(time);
-                            } else{
-                                seconds = -1;
+                } else {
+                    if(saveQuestion()){
+                        setContentView(R.layout.content_quiz_submit);
+                        //toolbar here if i feel like it
+                        final EditText creator= (EditText) findViewById(R.id.namefield);
+                        final EditText name = (EditText) findViewById(R.id.titlefield);
+                        final EditText time = (EditText) findViewById(R.id.timeField);
+                        Button submit = (Button) findViewById(R.id.submitbutton);
+                        submit.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                quiz.setNames(creator.getText().toString(), name.getText().toString());
+                                int minutes = -1;
+                                try{
+                                    minutes = Integer.parseInt(time.getText().toString());
+                                } catch (Exception e){
+                                    e.printStackTrace();
+                                }
+                                quiz.setTime(minutes);
+                                storeQuiz();
+                                //submit quiz
+                                //save quiz locally
+                                Intent intent = new Intent(QuizCreator.this, MainActivity.class);
+                                startActivity(intent);
                             }
-                            quiz.setTime(seconds);
-                            quiz.setNames(creator, name);
-                            //send to sql database when done
+                        });
+                    } else{
+                        Toast toast = Toast.makeText(getApplicationContext(), "Invalid question", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
 
-                        }
-                    });
-                    builder.setNegativeButton("Go Back", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            //Question nextQuestion = quiz.getQuestion(currentQuestion);
-                            //repopulateQuestion(nextQuestion);
-                        }
-                    });
-                    builder.setMessage("Submit quiz?");
-                    builder.setCancelable(false);
-                    LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.layout, null);
-
-                    //LinearLayout layout = (LinearLayout)findViewById(R.id.creatorPrompt);
-                    builder.setView(layout);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
                 }
-
-
             }
         });
         add.setOnClickListener(new View.OnClickListener() {
@@ -285,6 +281,33 @@ public class QuizCreator extends AppCompatActivity {
             }
         });
         return layout;
+    }
+
+    public void storeQuiz(){
+        String filename = "quizzes.txt";
+        try {
+            File file = new File(this.getFilesDir(), filename);
+            ArrayList<Quiz> allQuizzes = null;
+            if (file.exists()) {
+                FileInputStream inputStream = new FileInputStream(file);
+                ObjectInputStream in = new ObjectInputStream(inputStream);
+                allQuizzes = (ArrayList) in.readObject(); //probably change to results object
+                in.close();
+            }if(allQuizzes == null){
+                allQuizzes = new ArrayList<>();
+            }
+
+            allQuizzes.add(quiz);
+
+            FileOutputStream outputStream = new FileOutputStream(file);
+            ObjectOutputStream out = new ObjectOutputStream(outputStream);
+            out.writeObject(allQuizzes);
+            out.close();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        db.execute(quiz);
+        //push to database here
     }
 
     /*public void addChoice(boolean includeAddButton, boolean includeRemoveButton){   //only adds to end for now
