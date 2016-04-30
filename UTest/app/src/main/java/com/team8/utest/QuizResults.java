@@ -32,7 +32,7 @@ public class QuizResults extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ArrayList<Results> results = getResults();
         if(results.size() == 0){
-            
+
         } else{
 
         }
