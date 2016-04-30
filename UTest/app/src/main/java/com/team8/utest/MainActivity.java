@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goSearch(View view){
-        //Intent intent = new Intent(this, QuizSearch.class);
+        Intent intent = new Intent(this, QuizSearch.class);
         //swap back after testing
-        Intent intent = new Intent(this, QuizTaker.class);
+        //Intent intent = new Intent(this, QuizTaker.class);
         startActivity(intent);
     }
 

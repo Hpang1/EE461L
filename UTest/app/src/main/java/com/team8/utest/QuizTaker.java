@@ -282,25 +282,8 @@ public class QuizTaker extends AppCompatActivity {
             e.printStackTrace();
         }
         //go to results screen/display grade somehow
-        AlertDialog.Builder builder = new AlertDialog.Builder(QuizTaker.this);
-        builder.setPositiveButton("Return home", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(QuizTaker.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-        builder.setNegativeButton("New quiz", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(QuizTaker.this, QuizSearch.class);
-                startActivity(intent);
-            }
-        });
-        builder.setMessage("Grade: " + Integer.toString((int) grade));
-        builder.setCancelable(false);
-        AlertDialog dialog = builder.create();
-        dialog.show();
+        Intent intent = new Intent(QuizTaker.this, MainActivity.class);
+        startActivity(intent);
 
     }
 
