@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="-2dp"
+    android:id="@+id/myquizresult">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_weight="0.90"
+        android:background="@drawable/searchresult"
+        android:id="@+id/LINEARLAYOUT1"
+        android:layout_toStartOf="@id/resultscore">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quiz Name"
+            android:id="@+id/resultname"
+            android:paddingLeft="5dp"
+            android:textSize="21dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quiz Author"
+            android:id="@+id/resultauthor"
+            android:paddingLeft="25dp"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:text="10/10"
+        android:id="@+id/resultscore"
+        android:background="@drawable/searchresult"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="24dp"
+        android:gravity="center_vertical|center_horizontal" />
+
+</RelativeLayout>
