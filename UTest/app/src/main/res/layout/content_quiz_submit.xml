@@ -53,7 +53,7 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="15dp">
 
             <EditText
                 android:layout_width="fill_parent"
@@ -64,6 +64,24 @@
                 android:layout_marginRight="15dp"
                 android:hint="@string/titlehint" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/submitbutton"
+            android:layout_marginTop="15dp">
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/timeField"
+                android:layout_gravity="right"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:hint="@string/timehint" />
         </LinearLayout>
 
         <RelativeLayout
@@ -84,6 +102,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp" />
+
         </RelativeLayout>
 
     </LinearLayout>
