@@ -23,6 +23,14 @@ public class Quiz implements Serializable{
         this.creator = creator;
     }
 
+    public ArrayList<Integer> getCorrectAnswers(){
+        ArrayList<Integer> answers = new ArrayList<>();
+        for(Question question : questions){
+            answers.add(question.correctChoice());
+        }
+        return answers;
+    }
+
     public void setNames(String creator, String name){
         this.creator = creator;
         this.name = name;
@@ -56,8 +64,10 @@ public class Quiz implements Serializable{
             object = (Quiz) is.readObject();
         } catch (IOException e){
             e.printStackTrace();
+            return null;
         } catch (ClassNotFoundException e){
             e.printStackTrace();
+            return null;
         }
         return object;
     }

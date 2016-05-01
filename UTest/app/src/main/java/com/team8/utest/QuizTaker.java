@@ -234,17 +234,6 @@ public class QuizTaker extends AppCompatActivity {
                             //buttons[i].setBackgroundColor(Color.WHITE);
                         }
                     }
-                    results.set(currentQuestion, index);
-                    //code if no going back on questions
-                    /*Button button = (Button) v;
-                    int number = (int) button.getTag();
-                    results.set(currentQuestion, number);
-                    currentQuestion ++;
-                    if(!quiz.validQuestion(currentQuestion)){
-                        saveResults();
-                    } else {
-                        setupButtons();
-                    }*/
 
                 }
             });

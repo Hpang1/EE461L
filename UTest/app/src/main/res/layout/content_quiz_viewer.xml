@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.team8.utest.QuizViewer"
+    tools:showIn="@layout/activity_quiz_viewer">
+
+    <include
+        android:id="@+id/takeBarView"
+        layout="@layout/buttonbarquiztake"
+        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true">
+    </include>
+    <Button
+        android:id="@+id/answer5View"
+        android:layout_above="@id/takeBarView"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginBottom="10dip"
+        android:background="@drawable/answerbutton"/>
+    <Button
+        android:id="@+id/answer4View"
+        android:layout_above="@id/answer5View"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginBottom="10dip"
+        android:background="@drawable/answerbutton"/>
+    <Button
+        android:id="@+id/answer3View"
+        android:layout_above="@id/answer4View"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginBottom="10dip"
+        android:background="@drawable/answerbutton"/>
+    <Button
+        android:id="@+id/answer2View"
+        android:layout_above="@id/answer3View"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginBottom="10dip"
+        android:background="@drawable/answerbutton"/>
+    <Button
+        android:id="@+id/answer1View"
+        android:layout_above="@id/answer2View"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginBottom="10dip"
+        android:background="@drawable/answerbutton"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/questionTextView"
+        android:layout_above="@id/answer1View"
+        android:background="@drawable/customedittext"
+        android:layout_marginBottom="10dp"
+        android:gravity="top"
+        android:layout_alignParentTop="true" />
+
+
+</RelativeLayout>

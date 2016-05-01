@@ -23,6 +23,9 @@ public class Results implements Serializable {
         this.quiz = quiz;
         this.results = results;
     }
+    public Results(){
+
+    }
 
     public byte[] serialize(){
         byte[] data = null;
@@ -45,8 +48,10 @@ public class Results implements Serializable {
             object = (Results) is.readObject();
         } catch (IOException e){
             e.printStackTrace();
+            return null;
         } catch (ClassNotFoundException e){
             e.printStackTrace();
+            return null;
         }
         return object;
     }

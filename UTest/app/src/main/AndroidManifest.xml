@@ -72,7 +72,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.team8.utest.MainActivity" />
         </activity>
-        <activity android:name=".QuizViewer"></activity>
+        <activity
+            android:name=".QuizViewer"
+            android:label="@string/title_activity_quiz_viewer"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
