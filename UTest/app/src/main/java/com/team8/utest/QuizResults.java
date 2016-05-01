@@ -94,6 +94,7 @@ public class QuizResults extends AppCompatActivity {
                 }
             });
             scroll.addView(layout);
+            i++;
         }
     }
 

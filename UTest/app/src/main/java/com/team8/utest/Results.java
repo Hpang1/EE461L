@@ -41,6 +41,7 @@ public class Results implements Serializable {
     }
 
     public static Results deserialize(byte[] input){
+        if(input == null) return null;
         ByteArrayInputStream in = new ByteArrayInputStream(input);
         Results object = null;
         try{

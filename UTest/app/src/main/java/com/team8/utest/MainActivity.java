@@ -10,6 +10,14 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,6 +53,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logOut(View view){
+    }
+
+    public void clearQuizzes(View view){
+        String filename = "quizzes.txt";
+        ArrayList<Quiz> allResults = null;
+        try {
+            File file = new File(this.getFilesDir(), filename);
+            allResults = new ArrayList<Quiz>();
+            FileOutputStream outputStream = new FileOutputStream(file);
+            ObjectOutputStream out = new ObjectOutputStream(outputStream);
+            out.writeObject(allResults);
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Toast toast = Toast.makeText(getApplicationContext(), "Cleared Quizzes", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    public void clearResults(View view) {
+        String filename = "results.txt";
+        ArrayList<Results> allResults = null;
+        try {
+            File file = new File(this.getFilesDir(), filename);
+            allResults = new ArrayList<Results>();
+            FileOutputStream outputStream = new FileOutputStream(file);
+            ObjectOutputStream out = new ObjectOutputStream(outputStream);
+            out.writeObject(allResults);
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Toast toast = Toast.makeText(getApplicationContext(), "Cleared Results", Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     @Override

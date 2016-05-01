@@ -66,7 +66,6 @@ public class QuizPast extends AppCompatActivity {
             }
 
 
-
             if(allQuizzes == null){
                 allQuizzes = new ArrayList<>();
             }
@@ -93,13 +92,15 @@ public class QuizPast extends AppCompatActivity {
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Quiz quiz = allQuizzes.get((int) v.getTag());
+                    int index = (int) v.getTag();
+                    Quiz quiz = allQuizzes.get(index);
                     Intent intent = new Intent(QuizPast.this, QuizViewer.class);
                     intent.putExtra("quiz", quiz.serialize());
                     startActivity(intent);
                 }
             });
             scroll.addView(layout);
+            i++;
         }
     }
 

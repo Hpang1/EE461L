@@ -45,6 +45,11 @@ public class QuizViewer extends AppCompatActivity {
             results = result.results;
             quiz = result.quiz;
             prevResults = true;
+        } else{
+            results = new ArrayList<>();
+            for(int i = 0; i < quiz.quizSize(); i++){
+                results.add(-1);
+            }
         }
 
 
@@ -61,6 +66,7 @@ public class QuizViewer extends AppCompatActivity {
         for(int i = 0; i < 5; i++){
             buttons[i].setTag(i);
         }
+        outOfTime = (TextView) findViewById(R.id.textView2);
         questionText.setText(quiz.getQuestion(currentQuestion).getQuestion());
         setupButtons();
 
@@ -97,13 +103,13 @@ public class QuizViewer extends AppCompatActivity {
                 }
             }
         });
-        outOfTime = (TextView) findViewById(R.id.textView2);
+
 
 
     }
 
     public void setupButtons() { //
-        outOfTime.setText("");
+        outOfTime.setText(" ");
         Question question = quiz.getQuestion(currentQuestion);
         int chosen = results.get(currentQuestion);
         int correct = answers.get(currentQuestion);
@@ -129,7 +135,7 @@ public class QuizViewer extends AppCompatActivity {
             buttons[i].setClickable(false);
 
         }
-        if(chosen < 0){
+        if(chosen < 0 && prevResults){
             //something
             outOfTime.setText("No choice");
         }

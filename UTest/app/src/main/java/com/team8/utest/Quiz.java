@@ -57,6 +57,7 @@ public class Quiz implements Serializable{
     }
 
     public static Quiz deserialize(byte[] input){
+        if(input == null) return null;
         ByteArrayInputStream in = new ByteArrayInputStream(input);
         Quiz object = null;
         try{
