@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,11 +36,12 @@ public class QuizPast extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //grab all previously created quizzes
         //possibly grab from server all corresponding results (or maybe do that when a quiz is selected)
-        ArrayList<Quiz> quizzes = getQuizzes();
-        if(quizzes.size() == 0){
-
+        allQuizzes = getQuizzes();
+        if(allQuizzes.size() == 0){
+            TextView title = (TextView) findViewById(R.id.pastQuizText);
+            title.setText("No Quizzes");
         } else{
-
+            populateScroll();
         }
     }
 
@@ -53,9 +55,19 @@ public class QuizPast extends AppCompatActivity {
             if (file.exists()) {
                 FileInputStream inputStream = new FileInputStream(file);
                 ObjectInputStream in = new ObjectInputStream(inputStream);
-                allQuizzes = (ArrayList) in.readObject(); //probably change to results object
+                allQuizzes = (ArrayList<Quiz>) in.readObject(); //probably change to results object
                 in.close();
-            }if(allQuizzes == null){
+            } else{
+                allQuizzes = new ArrayList<>();
+                FileOutputStream outputStream = new FileOutputStream(file);
+                ObjectOutputStream out = new ObjectOutputStream(outputStream);
+                out.writeObject(allQuizzes);
+                out.close();
+            }
+
+
+
+            if(allQuizzes == null){
                 allQuizzes = new ArrayList<>();
             }
         } catch(Exception e){
@@ -67,7 +79,7 @@ public class QuizPast extends AppCompatActivity {
     public void populateScroll(){
         //scroll = new ArrayList<>(quizzes.size());
         //maybe sort results later based on author or name
-        LinearLayout scroll = (LinearLayout) findViewById(R.id.searchScroll2);
+        LinearLayout scroll = (LinearLayout) findViewById(R.id.pastScroll2);
         scroll.removeAllViews();
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         int i = 0;

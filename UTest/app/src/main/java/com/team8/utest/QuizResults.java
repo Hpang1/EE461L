@@ -15,7 +15,9 @@ import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class QuizResults extends AppCompatActivity {
@@ -30,11 +32,12 @@ public class QuizResults extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ArrayList<Results> results = getResults();
-        if(results.size() == 0){
-
-        } else{
-
+        allResults = getResults();
+        if(allResults.size() == 0){
+            TextView title = (TextView) findViewById(R.id.resultsQuizText);
+            title.setText("No Results");
+        } else {
+            populateScroll();
         }
         //grab all previous quizzes
         //grab results for each corresponding quiz
@@ -42,15 +45,22 @@ public class QuizResults extends AppCompatActivity {
 
     public ArrayList<Results> getResults(){
         String filename = "results.txt";
-        allResults = null;
+        ArrayList<Results> allResults = null;
         try {
             File file = new File(this.getFilesDir(), filename);
             if (file.exists()) {
                 FileInputStream inputStream = new FileInputStream(file);
                 ObjectInputStream in = new ObjectInputStream(inputStream);
-                allResults = (ArrayList) in.readObject(); //probably change to results object
+                allResults = (ArrayList<Results>) in.readObject(); //probably change to results object
                 in.close();
-            }if(allResults == null){
+            } else{
+                allResults = new ArrayList<>();
+                FileOutputStream outputStream = new FileOutputStream(file);
+                ObjectOutputStream out = new ObjectOutputStream(outputStream);
+                out.writeObject(allResults);
+                out.close();
+            }
+            if(allResults == null){
                 allResults = new ArrayList<>();
             }
         } catch(Exception e){
@@ -62,7 +72,7 @@ public class QuizResults extends AppCompatActivity {
     public void populateScroll(){
         //scroll = new ArrayList<>(quizzes.size());
         //maybe sort results later based on author or name
-        LinearLayout scroll = (LinearLayout) findViewById(R.id.searchScroll2);
+        LinearLayout scroll = (LinearLayout) findViewById(R.id.resultsScroll2);
         scroll.removeAllViews();
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         int i = 0;
