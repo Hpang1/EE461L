@@ -6,7 +6,7 @@
     <string name="title_activity_quiz_creator">Quiz Creator</string>
     <string name="title_activity_quiz_results">Quiz Results</string>
     <string name="title_activity_quiz_past">Quiz Past</string>
-    <string name="greeting">Greeting</string>
+    <string name="greeting"><font size="25"><i>Welcome!</i></font></string>
     <string name="namehint"><i>Add your name here</i></string>
     <string name="titlehint"><i>Add quiz title here</i></string>
     <string name="quizcreatorstring"><i>Enter question here</i></string>
