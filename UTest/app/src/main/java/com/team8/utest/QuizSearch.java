@@ -16,6 +16,11 @@ import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.zip.Inflater;
@@ -108,6 +113,9 @@ public class QuizSearch extends AppCompatActivity {
             }
         });
 
+        quizzes = InternalStorage.getQuizzes(this);
+        populateScroll();
+
 
     }
 
@@ -135,7 +143,10 @@ public class QuizSearch extends AppCompatActivity {
                 }
             });
             scroll.addView(layout);
+            i++;
         }
     }
+
+
 
 }

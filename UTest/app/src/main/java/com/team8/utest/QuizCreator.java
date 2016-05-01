@@ -55,7 +55,7 @@ public class QuizCreator extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         db = new DBPush();
 
-        layout = (LinearLayout)((LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.layout, null);
+        //layout = (LinearLayout)((LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.layout, null);
 
         //RelativeLayout parent = (RelativeLayout) findViewById(R.id.question);
 
@@ -284,28 +284,7 @@ public class QuizCreator extends AppCompatActivity {
     }
 
     public void storeQuiz(){
-        String filename = "quizzes.txt";
-        try {
-            File file = new File(this.getFilesDir(), filename);
-            ArrayList<Quiz> allQuizzes = null;
-            if (file.exists()) {
-                FileInputStream inputStream = new FileInputStream(file);
-                ObjectInputStream in = new ObjectInputStream(inputStream);
-                allQuizzes = (ArrayList) in.readObject(); //probably change to results object
-                in.close();
-            }if(allQuizzes == null){
-                allQuizzes = new ArrayList<>();
-            }
-
-            allQuizzes.add(quiz);
-
-            FileOutputStream outputStream = new FileOutputStream(file);
-            ObjectOutputStream out = new ObjectOutputStream(outputStream);
-            out.writeObject(allQuizzes);
-            out.close();
-        } catch(Exception e){
-            e.printStackTrace();
-        }
+        InternalStorage.writeQuiz(QuizCreator.this, quiz);
         db.execute(quiz);
         //push to database here
     }

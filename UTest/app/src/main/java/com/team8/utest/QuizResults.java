@@ -32,7 +32,7 @@ public class QuizResults extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        allResults = getResults();
+        allResults = InternalStorage.getResults(QuizResults.this);
         if(allResults.size() == 0){
             TextView title = (TextView) findViewById(R.id.resultsQuizText);
             title.setText("No Results");
@@ -43,31 +43,7 @@ public class QuizResults extends AppCompatActivity {
         //grab results for each corresponding quiz
     }
 
-    public ArrayList<Results> getResults(){
-        String filename = "results.txt";
-        ArrayList<Results> allResults = null;
-        try {
-            File file = new File(this.getFilesDir(), filename);
-            if (file.exists()) {
-                FileInputStream inputStream = new FileInputStream(file);
-                ObjectInputStream in = new ObjectInputStream(inputStream);
-                allResults = (ArrayList<Results>) in.readObject(); //probably change to results object
-                in.close();
-            } else{
-                allResults = new ArrayList<>();
-                FileOutputStream outputStream = new FileOutputStream(file);
-                ObjectOutputStream out = new ObjectOutputStream(outputStream);
-                out.writeObject(allResults);
-                out.close();
-            }
-            if(allResults == null){
-                allResults = new ArrayList<>();
-            }
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-        return allResults;
-    }
+
 
     public void populateScroll(){
         //scroll = new ArrayList<>(quizzes.size());

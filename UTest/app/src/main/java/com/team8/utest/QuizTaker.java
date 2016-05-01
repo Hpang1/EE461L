@@ -94,7 +94,7 @@ public class QuizTaker extends AppCompatActivity {
         currentQuestion = 0;
 
 
-        final EditText question = (EditText) findViewById(R.id.questionText);
+        final TextView question = (TextView) findViewById(R.id.questionText);
         question.setText(quiz.getQuestion(currentQuestion).getQuestion());
         buttons[0] = (Button) findViewById(R.id.answer1);
         buttons[1] = (Button) findViewById(R.id.answer2);
@@ -223,9 +223,9 @@ public class QuizTaker extends AppCompatActivity {
                     Button b = (Button) v;
                     b.setPressed(true);
                     //change color to pressed color
-
                     b.setBackgroundResource(R.drawable.selectedanswerbutton);
                     int index = (int) b.getTag();
+                    results.set(currentQuestion, index);
                     for(int i = 0; i < 5; i++){
                         if(i != index){
                             buttons[i].setPressed(false);
@@ -253,29 +253,8 @@ public class QuizTaker extends AppCompatActivity {
             timeKeeper.cancel();
         }
         double grade = quiz.gradeQuiz(results);
-        String filename = "results.txt";
-        try {
-            File file = new File(this.getFilesDir(), filename);
-            ArrayList<Results> allResults = null;
-            if (file.exists()) {
-                FileInputStream inputStream = new FileInputStream(file);
-                ObjectInputStream in = new ObjectInputStream(inputStream);
-                allResults = (ArrayList) in.readObject(); //probably change to results object
-                in.close();
-            }if(allResults == null){
-                allResults = new ArrayList<>();
-            }
-
-            Results resultStorage = new Results(quiz, results);
-            allResults.add(resultStorage);
-
-            FileOutputStream outputStream = new FileOutputStream(file);
-            ObjectOutputStream out = new ObjectOutputStream(outputStream);
-            out.writeObject(allResults);
-            out.close();
-        } catch(Exception e){
-            e.printStackTrace();
-        }
+        Results resultsStorage = new Results(quiz, results);
+        InternalStorage.writeResults(QuizTaker.this, resultsStorage);
         //go to results screen/display grade somehow
         AlertDialog.Builder builder = new AlertDialog.Builder(QuizTaker.this);
         builder.setPositiveButton("Return home", new DialogInterface.OnClickListener() {

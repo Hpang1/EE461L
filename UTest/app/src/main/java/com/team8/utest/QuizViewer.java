@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,11 +27,35 @@ public class QuizViewer extends AppCompatActivity {
     TextView outOfTime;
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_viewer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
+
+        /*toolbar.setNavigationIcon(R.drawable.prevquestion);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });*/
 
         Results result = null;
         try{
@@ -57,7 +82,7 @@ public class QuizViewer extends AppCompatActivity {
         //results = new ArrayList<Integer>(); //make all -1, if from quizpast
         answers = quiz.getCorrectAnswers();
 
-        final EditText questionText = (EditText) findViewById(R.id.questionTextView);
+        final TextView questionText = (TextView) findViewById(R.id.questionTextView);
         buttons[0] = (Button) findViewById(R.id.answer1View);
         buttons[1] = (Button) findViewById(R.id.answer2View);
         buttons[2] = (Button) findViewById(R.id.answer3View);
@@ -93,13 +118,8 @@ public class QuizViewer extends AppCompatActivity {
                     questionText.setText(quiz.getQuestion(currentQuestion).getQuestion());
                     setupButtons();
                 } else{
-                    Intent intent;
-                    if(prevResults){
-                        intent = new Intent(QuizViewer.this, QuizResults.class);
-                    } else{
-                        intent = new Intent(QuizViewer.this, QuizPast.class);
-                    }
-                    startActivity(intent);
+                    Toast toast = Toast.makeText(getApplicationContext(), "No more questions", Toast.LENGTH_SHORT);
+                    toast.show();
                 }
             }
         });
@@ -121,7 +141,7 @@ public class QuizViewer extends AppCompatActivity {
                 if (i == correct) {
                     buttons[i].setBackgroundResource(R.drawable.correctanswerbutton);
                     //set to green
-                } else if(i == chosen && i != correct && chosen > 0){
+                } else if(i == chosen && i != correct && chosen >= 0){
                     //set to red
                     buttons[i].setBackgroundResource(R.drawable.incorrectanswerbutton);
                 } else{

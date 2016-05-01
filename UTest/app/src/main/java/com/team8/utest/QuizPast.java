@@ -36,7 +36,7 @@ public class QuizPast extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //grab all previously created quizzes
         //possibly grab from server all corresponding results (or maybe do that when a quiz is selected)
-        allQuizzes = getQuizzes();
+        allQuizzes = InternalStorage.getQuizzes(QuizPast.this);
         if(allQuizzes.size() == 0){
             TextView title = (TextView) findViewById(R.id.pastQuizText);
             title.setText("No Quizzes");
@@ -46,34 +46,6 @@ public class QuizPast extends AppCompatActivity {
     }
 
 
-
-    public ArrayList<Quiz> getQuizzes(){
-        String filename = "quizzes.txt";
-        ArrayList<Quiz> allQuizzes = null;
-        try {
-            File file = new File(this.getFilesDir(), filename);
-            if (file.exists()) {
-                FileInputStream inputStream = new FileInputStream(file);
-                ObjectInputStream in = new ObjectInputStream(inputStream);
-                allQuizzes = (ArrayList<Quiz>) in.readObject(); //probably change to results object
-                in.close();
-            } else{
-                allQuizzes = new ArrayList<>();
-                FileOutputStream outputStream = new FileOutputStream(file);
-                ObjectOutputStream out = new ObjectOutputStream(outputStream);
-                out.writeObject(allQuizzes);
-                out.close();
-            }
-
-
-            if(allQuizzes == null){
-                allQuizzes = new ArrayList<>();
-            }
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-        return allQuizzes;
-    }
 
     public void populateScroll(){
         //scroll = new ArrayList<>(quizzes.size());
