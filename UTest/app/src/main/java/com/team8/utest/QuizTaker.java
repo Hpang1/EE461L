@@ -252,7 +252,7 @@ public class QuizTaker extends AppCompatActivity {
         if(timerRunning){
             timeKeeper.cancel();
         }
-        double grade = quiz.gradeQuiz(results);
+        int numCorrect = quiz.gradeQuiz(results);
         Results resultsStorage = new Results(quiz, results);
         InternalStorage.writeResults(QuizTaker.this, resultsStorage);
         //go to results screen/display grade somehow
@@ -271,7 +271,7 @@ public class QuizTaker extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        builder.setMessage("Grade: " + Integer.toString((int) grade));
+        builder.setMessage("Grade: " + Integer.toString(numCorrect) + "/" + Integer.toString(quiz.quizSize()));
         builder.setCancelable(false);
         AlertDialog dialog = builder.create();
         dialog.show();

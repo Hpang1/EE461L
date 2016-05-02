@@ -7,23 +7,22 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="28dp"
+        android:layout_height="32dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/quiztitle"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="false"
-        android:layout_toLeftOf="@+id/creator"
         android:layout_toStartOf="@+id/creator"
         android:paddingLeft="7dp"
         android:background="@drawable/searchresult"
-        android:textSize="13dp"
+        android:textSize="16dp"
         android:layout_marginRight="-2dp" />
 
     <TextView
-        android:layout_width="90dp"
-        android:layout_height="28dp"
+        android:layout_width="140dp"
+        android:layout_height="32dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/creator"
@@ -32,9 +31,9 @@
         android:layout_alignParentEnd="true"
         android:background="@drawable/searchresult"
         android:nestedScrollingEnabled="false"
-        android:minWidth="90dp"
-        android:maxWidth="90dp"
-        android:textSize="13dp" />
+        android:minWidth="100dp"
+        android:maxWidth="100dp"
+        android:textSize="16dp" />
 
 
 </RelativeLayout>

@@ -54,12 +54,15 @@ public class QuizResults extends AppCompatActivity {
         int i = 0;
         for(Results result : allResults){
             Quiz quiz = result.quiz;
-            RelativeLayout layout = (RelativeLayout)inflater.inflate(R.layout.searchresult, null);
+            int numcorrect = quiz.gradeQuiz(result.results);
+            RelativeLayout layout = (RelativeLayout)inflater.inflate(R.layout.quizresult, null);
             layout.setTag(i);
-            TextView name = (TextView) layout.findViewById(R.id.quiztitle);
-            TextView creator = (TextView) layout.findViewById(R.id.creator);
+            TextView name = (TextView) layout.findViewById(R.id.resultname);
+            TextView creator = (TextView) layout.findViewById(R.id.resultauthor);
+            TextView grade = (TextView) layout.findViewById(R.id.resultscore);
             name.setText(quiz.name);
             creator.setText(quiz.creator);
+            grade.setText(Integer.toString(numcorrect) + "/" + Integer.toString(quiz.quizSize()));
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

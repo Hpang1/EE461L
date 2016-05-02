@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Layout;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -39,12 +40,44 @@ public class QuizCreator extends AppCompatActivity {
     int currentQuestion = 0;
     RelativeLayout[] choiceArray = new RelativeLayout[5];
     EditText question;
+    boolean done = false;
 
 
     LinearLayout layout;
     DBPush db;
 
+    public void onBackPressed()
+    {
+        if(done){
+            Intent intent = new Intent(QuizCreator.this, QuizCreator.class);
+            intent.putExtra("quiz", quiz.serialize());
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else{
+            super.onBackPressed();
+            Intent goToMainActivity = new Intent(getApplicationContext(), MainActivity.class);
+            goToMainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(goToMainActivity);
+        }
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                if(done){
+                    Intent intent = new Intent(QuizCreator.this, QuizCreator.class);
+                    intent.putExtra("quiz", quiz.serialize());
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    return true;
+                }
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +87,8 @@ public class QuizCreator extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         db = new DBPush();
+
+
 
         //layout = (LinearLayout)((LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.layout, null);
 
@@ -65,10 +100,18 @@ public class QuizCreator extends AppCompatActivity {
         //LinearLayout parent = (LinearLayout) inflater.inflate(R.layout.activity_quiz_creator, null);
 
         //layout = (LinearLayout)findViewById(R.id.createLayout);
+
+        Quiz tempQuiz = Quiz.deserialize(getIntent().getByteArrayExtra("quiz"));
+        if(tempQuiz != null){
+            quiz = tempQuiz;
+            currentQuestion = quiz.quizSize()-1;
+        }
+
+
         question = (EditText) findViewById(R.id.questionText);
         //question.setText("Sample Question");
 
-        numquestions += 1;
+        //numquestions += 1;
         //correctAnswer.add(0);   //default 0 correct
         //parent.addView(question);
         RelativeLayout choice = null;
@@ -85,9 +128,13 @@ public class QuizCreator extends AppCompatActivity {
             choiceArray[i] = choice;
             setChoice(choice, i);
         }
+        if(tempQuiz == null){
+            Question startingQuestion = new Question();
+            repopulateQuestion(startingQuestion);
+        }else{
+            repopulateQuestion(quiz.getQuestion(currentQuestion));
+        }
 
-        Question startingQuestion = new Question();
-        repopulateQuestion(startingQuestion);
 
         RelativeLayout bar = (RelativeLayout) findViewById(R.id.createBar);
         ImageButton previous = (ImageButton) bar.findViewById(R.id.prevquestion);
@@ -97,7 +144,11 @@ public class QuizCreator extends AppCompatActivity {
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(currentQuestion == 0){return;}
+                if(currentQuestion == 0){
+                    Toast toast = Toast.makeText(getApplicationContext(), "No previous questions", Toast.LENGTH_SHORT);
+                    toast.show();
+                    return;
+                }
                 saveQuestion();
                 Question prevQuestion = quiz.getQuestion(currentQuestion - 1);
                 repopulateQuestion(prevQuestion);
@@ -120,7 +171,13 @@ public class QuizCreator extends AppCompatActivity {
 
                 } else {
                     if(saveQuestion()){
+                        done = true;
                         setContentView(R.layout.content_quiz_submit);
+                        //LayoutInflater inflater = (LayoutInflater)QuizCreator.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        //LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.content_quiz_submit, null);
+                        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+                        setSupportActionBar(toolbar);
+                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                         //toolbar here if i feel like it
                         final EditText creator= (EditText) findViewById(R.id.namefield);
                         final EditText name = (EditText) findViewById(R.id.titlefield);
@@ -285,7 +342,7 @@ public class QuizCreator extends AppCompatActivity {
 
     public void storeQuiz(){
         InternalStorage.writeQuiz(QuizCreator.this, quiz);
-        db.execute(quiz);
+        //db.execute(quiz);
         //push to database here
     }
 

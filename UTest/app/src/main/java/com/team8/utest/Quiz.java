@@ -108,15 +108,15 @@ public class Quiz implements Serializable{
         this.password = password;
     }*/
 
-    public double gradeQuiz(ArrayList<Integer> answers){
-        double sum = 0;
+    public int gradeQuiz(ArrayList<Integer> answers){
+        int sum = 0;
         for(int i = 0; i < questions.size(); i++){
             int answer = answers.get(i);
             if(questions.get(i).isCorrect(answer)){
                 sum += 1;
             }
         }
-        return (sum / questions.size()) * 100;
+        return sum;
     }
 
 }
