@@ -87,6 +87,7 @@ public class QuizCreator extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //db = new DBPush(QuizCreator.this);
+        db = new DBPush(this);
 
 
 
@@ -342,7 +343,7 @@ public class QuizCreator extends AppCompatActivity {
 
     public void storeQuiz(){
         InternalStorage.writeQuiz(QuizCreator.this, quiz);
-        //db.execute(quiz);
+        db.execute(quiz);
         //push to database here
     }
 
