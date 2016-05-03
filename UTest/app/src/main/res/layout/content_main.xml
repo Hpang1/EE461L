@@ -97,17 +97,17 @@
             <!--android:background="@drawable/menubutton"-->
             <!--android:onClick="clearQuizzes"-->
             <!--android:textAppearance="?android:attr/textAppearanceMedium" />-->
-        <!--<Button-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="45dp"-->
-            <!--android:text="Clear Results"-->
-            <!--android:id="@+id/clearResults"-->
-            <!--android:layout_gravity="center_horizontal"-->
-            <!--android:layout_marginBottom="25dp"-->
-            <!--android:clickable="true"-->
-            <!--android:background="@drawable/menubutton"-->
-            <!--android:onClick="clearResults"-->
-            <!--android:textAppearance="?android:attr/textAppearanceMedium" />-->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="Clear Results"
+            android:id="@+id/clearResults"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="25dp"
+            android:clickable="true"
+            android:background="@drawable/menubutton"
+            android:onClick="clearResults"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <!-- <Button
             android:layout_width="match_parent"

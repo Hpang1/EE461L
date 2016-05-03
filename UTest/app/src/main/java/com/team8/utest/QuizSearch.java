@@ -40,7 +40,7 @@ public class QuizSearch extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        db = new DBFetch();
+        //db = new DBFetch(this);
 
         final SearchView searchBar = (SearchView) findViewById(R.id.searchView2);
         Button searchTitle = (Button) findViewById(R.id.searchAuthor);
@@ -53,10 +53,14 @@ public class QuizSearch extends AppCompatActivity {
             public void onClick(View v) {
                 String text = searchBar.getQuery().toString();
                 //get results
+                //quizzes = db.getQuizzes(text, "title");
+
+
+
                 quizzes = new ArrayList<>();    //replace with response from db
 
                 //example code
-                Question q1 = new Question("q1");
+                /*Question q1 = new Question("q1");
                 Question q2 = new Question("q2");
                 Choice c1 =  new Choice("c1");
                 Choice c2 = new Choice("c2");
@@ -71,7 +75,7 @@ public class QuizSearch extends AppCompatActivity {
                     quiz.addQuestion(q1);
                     quiz.addQuestion(q2);
                     quizzes.add(quiz);
-                }
+                }*/
                 //end example code
 
                 populateScroll();
@@ -87,11 +91,16 @@ public class QuizSearch extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String text = searchBar.getQuery().toString();
+                //quizzes = db.getQuizzes(text, "creator");
+
+
+
+
                 //search with this text
                 quizzes = new ArrayList<>();    //replace with response from db
 
                 //example code
-                Question q1 = new Question("q1");
+                /*Question q1 = new Question("q1");
                 Question q2 = new Question("q2");
                 Choice c1 =  new Choice("c1");
                 Choice c2 = new Choice("c2");
@@ -105,8 +114,8 @@ public class QuizSearch extends AppCompatActivity {
                     Quiz quiz = new Quiz(String.format("quiz%d", i), "creator2");
                     quiz.addQuestion(q1);
                     quiz.addQuestion(q2);
-                    quizzes.add(quiz);
-                }
+                    quizzes.add(quiz);*/
+                //}
                 //end example code
 
                 populateScroll();
