@@ -59,8 +59,8 @@ public class QuizPast extends AppCompatActivity {
             layout.setTag(i);
             TextView name = (TextView) layout.findViewById(R.id.quiztitle);
             TextView creator = (TextView) layout.findViewById(R.id.creator);
-            name.setText(quiz.name);
-            creator.setText(quiz.creator);
+            name.setText(quiz.creator);
+            creator.setText(quiz.name);
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

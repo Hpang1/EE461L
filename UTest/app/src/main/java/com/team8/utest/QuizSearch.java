@@ -40,7 +40,7 @@ public class QuizSearch extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //db = new DBFetch(this);
+        db = new DBFetch();
 
         final SearchView searchBar = (SearchView) findViewById(R.id.searchView2);
         Button searchTitle = (Button) findViewById(R.id.searchAuthor);
@@ -140,8 +140,8 @@ public class QuizSearch extends AppCompatActivity {
             layout.setTag(i);
             TextView name = (TextView) layout.findViewById(R.id.quiztitle);
             TextView creator = (TextView) layout.findViewById(R.id.creator);
-            name.setText(quiz.name);
-            creator.setText(quiz.creator);
+            name.setText(quiz.creator);
+            creator.setText(quiz.name);
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

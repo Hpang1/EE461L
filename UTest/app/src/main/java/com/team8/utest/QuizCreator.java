@@ -187,7 +187,7 @@ public class QuizCreator extends AppCompatActivity {
                         submit.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                quiz.setNames(creator.getText().toString(), name.getText().toString());
+                                quiz.setNames(creator.getText().toString(), name.getText().toString()); //swap these later
                                 int minutes = -1;
                                 try{
                                     minutes = Integer.parseInt(time.getText().toString());
