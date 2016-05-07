@@ -25,35 +25,40 @@
         android:layout_width="match_parent"
         android:layout_height="36dp"
         android:layout_marginBottom="10dip"
-        android:background="@drawable/answerbutton"/>
+        android:background="@drawable/answerbutton"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
     <Button
         android:id="@+id/answer4View"
         android:layout_above="@id/answer5View"
         android:layout_width="match_parent"
         android:layout_height="36dp"
         android:layout_marginBottom="10dip"
-        android:background="@drawable/answerbutton"/>
+        android:background="@drawable/answerbutton"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
     <Button
         android:id="@+id/answer3View"
         android:layout_above="@id/answer4View"
         android:layout_width="match_parent"
         android:layout_height="36dp"
         android:layout_marginBottom="10dip"
-        android:background="@drawable/answerbutton"/>
+        android:background="@drawable/answerbutton"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
     <Button
         android:id="@+id/answer2View"
         android:layout_above="@id/answer3View"
         android:layout_width="match_parent"
         android:layout_height="36dp"
         android:layout_marginBottom="10dip"
-        android:background="@drawable/answerbutton"/>
+        android:background="@drawable/answerbutton"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
     <Button
         android:id="@+id/answer1View"
         android:layout_above="@id/answer2View"
         android:layout_width="match_parent"
         android:layout_height="36dp"
         android:layout_marginBottom="10dip"
-        android:background="@drawable/answerbutton"/>
+        android:background="@drawable/answerbutton"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:layout_width="match_parent"
@@ -63,7 +68,10 @@
         android:background="@drawable/customedittext"
         android:layout_marginBottom="10dp"
         android:gravity="top"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textSize="18dp" />
 
 
 </RelativeLayout>

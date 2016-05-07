@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.team8.utest.QuizViewer">
+    tools:context="com.team8.utest.QuizViewer"
+    android:background="?attr/colorAccent">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
