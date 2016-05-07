@@ -187,19 +187,25 @@ public class QuizCreator extends AppCompatActivity {
                         submit.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                quiz.setNames(creator.getText().toString(), name.getText().toString()); //swap these later
-                                int minutes = -1;
-                                try{
-                                    minutes = Integer.parseInt(time.getText().toString());
-                                } catch (Exception e){
-                                    e.printStackTrace();
+                                if(creator.getText().toString().equals("") || name.getText().toString().equals("")){
+                                    Toast toast = Toast.makeText(getApplicationContext(), "Please fill in the name and creator field!", Toast.LENGTH_SHORT);
+                                    toast.show();
                                 }
-                                quiz.setTime(minutes);
-                                storeQuiz();
-                                //submit quiz
-                                //save quiz locally
-                                Intent intent = new Intent(QuizCreator.this, MainActivity.class);
-                                startActivity(intent);
+                                else {
+                                    quiz.setNames(creator.getText().toString(), name.getText().toString()); //swap these later
+                                    int minutes = -1;
+                                    try {
+                                        minutes = Integer.parseInt(time.getText().toString());
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                    quiz.setTime(minutes);
+                                    storeQuiz();
+                                    //submit quiz
+                                    //save quiz locally
+                                    Intent intent = new Intent(QuizCreator.this, MainActivity.class);
+                                    startActivity(intent);
+                                }
                             }
                         });
                     } else{

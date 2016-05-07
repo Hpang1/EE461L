@@ -70,7 +70,8 @@
         android:gravity="top"
         android:hint="@string/quizcreatorstring"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp" />
+        android:paddingRight="10dp"
+        android:textSize="18dp" />
 
 
 
