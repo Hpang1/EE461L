@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.team8.utest"
-        minSdkVersion 11
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -31,5 +31,6 @@ dependencies {
     androidTestCompile 'com.android.support.test:rules:0.4.1'
     testCompile 'org.robolectric:robolectric:3.1-SNAPSHOT'
     testCompile 'org.robolectric:shadows-support-v4:3.1-SNAPSHOT'
-
+    compile 'com.google.code.gson:gson:2.2.4'
+    compile 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
 }

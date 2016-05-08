@@ -86,8 +86,7 @@ public class QuizCreator extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //db = new DBPush(QuizCreator.this);
-        db = new DBPush(this);
+        db = new DBPush();
 
 
 

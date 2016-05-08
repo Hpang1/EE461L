@@ -1,63 +1,69 @@
 package com.team8.utest;
 
-import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.Toast;
+import android.util.Base64;
+import android.util.Log;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
 
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+
+
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+
 
 /**
  * Created by jschoe on 4/30/16.
  */
-public class DBFetch extends AsyncTask<String, Void, Quiz> {
-    Context ctx;
-
-    DBFetch() {
-        this.ctx = ctx;
-    }
-
+public class DBFetch extends AsyncTask<String, Void, ArrayList<Quiz>> {
+    public ArrayList<Quiz> queryResult;
     @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-    }
+    protected ArrayList<Quiz> doInBackground(String ... params) {
+        String get_name_url = "http://utestapp.com/getName.php";
+        String get_creator_url = "http://utestapp.com/getCreator.php";
+        String key = params[0];
+        String task = params[1];
+        ServiceHandler jsonParser = new ServiceHandler();
+        ArrayList<Quiz> quizList= new ArrayList<Quiz>();
+        String json = "";
+        List<NameValuePair> nvp = new ArrayList<NameValuePair>();
+        if(task == "title"){
+            nvp.add(new BasicNameValuePair("quiz_name", key));
+            json = jsonParser.makeServiceCall(get_name_url, ServiceHandler.GET, nvp);
 
-    @Override
-    protected Quiz doInBackground(String... params) {
-        String get_url = "http://10.0.2.2:8080/UTest/get.php";
-        String query_term = params[0];
-        Quiz result = null;
+        } else if (task == "creator"){
+            nvp.add(new BasicNameValuePair("quiz_creator", key));
+            json = jsonParser.makeServiceCall(get_creator_url, ServiceHandler.GET, nvp);
+        }
+        Log.e("Response: ", "> " + json);
 
+        if(json != null){
         try{
-            URL url = new URL(get_url);
-            HttpURLConnection con = (HttpURLConnection)url.openConnection();
-            con.setRequestMethod("GET");
-            con.setDoInput(true);
-
-            return result;
-
-
-            
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+            //JSONObject jsonObj = new JSONObject(json);
+            //if (jsonObj != null) {
+            JSONArray quizzes = new JSONArray(json);
+                for (int i = 0; i < quizzes.length(); i++) {
+                    byte[] quizObj = Base64.decode(quizzes.getString(i), Base64.DEFAULT);
+                    Quiz quiz = Quiz.deserialize(quizObj);
+                    quizList.add(quiz);
+                }
+            //}
+            queryResult = quizList;
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return null;
+        } else {
+            Log.e("JSON Data", "Didn't receive any data from server!");
+        }
+        return queryResult;
     }
 
-    @Override
-    protected void onProgressUpdate(Void... values) {
-        super.onProgressUpdate(values);
-    }
 
-    @Override
-    protected void onPostExecute(Quiz result) {
-
-    }
 }
