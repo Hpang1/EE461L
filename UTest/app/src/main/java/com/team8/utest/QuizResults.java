@@ -60,8 +60,8 @@ public class QuizResults extends AppCompatActivity {
             TextView name = (TextView) layout.findViewById(R.id.resultname);
             TextView creator = (TextView) layout.findViewById(R.id.resultauthor);
             TextView grade = (TextView) layout.findViewById(R.id.resultscore);
-            name.setText(quiz.creator);
-            creator.setText(quiz.name);
+            name.setText(quiz.name);
+            creator.setText(quiz.creator);
             grade.setText(Integer.toString(numcorrect) + "/" + Integer.toString(quiz.quizSize()));
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
